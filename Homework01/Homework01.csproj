@@ -46,7 +46,7 @@
     <Compile Include="Car.cs" />
     <Compile Include="CarList.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="PackageType.cs" />
+    <Compile Include="Package.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

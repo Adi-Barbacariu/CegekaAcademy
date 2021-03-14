@@ -61,7 +61,7 @@ namespace Homework01
 
 		}
 
-		public int DisplayCarPackageMenu(PackageType[] carPackages)
+		public int DisplayCarPackageMenu(Package[] carPackages)
 		{
 			Console.WriteLine("---------------------------");
 			Console.WriteLine("Choose the car's package:");

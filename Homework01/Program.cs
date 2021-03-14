@@ -10,11 +10,11 @@ namespace Homework01
 		static void Main(string[] args)
 		{
 			string[] models = { "Mercedes", "Audi", "Tesla", "Smart", "Volvo", "Toyota" };
-			PackageType[] packages =
+			Package[] packages =
 		   {
-			new PackageType("Standard", 2.0f, 120, "automatic", "Diesel", false, false),
-			new PackageType("Sport", 2.5f, 200, "manual", "Diesel", false, true),
-			new PackageType("Comfort", 2.0f, 165, "automatic", "Diesel", true, false)
+			new Package("Standard", 2.0f, 120, "automatic", "Diesel", false, false),
+			new Package("Sport", 2.5f, 200, "manual", "Diesel", false, true),
+			new Package("Comfort", 2.0f, 165, "automatic", "Diesel", true, false)
 			};
 
 			var Cars = new CarList();	 

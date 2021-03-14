@@ -1,6 +1,6 @@
 ﻿namespace Homework01
 {
-	public class PackageType
+	public class Package
 	{
 		public string Name { get; private set; }
 		private float engineCapacity;
@@ -10,7 +10,7 @@
 		private bool parkingSensors;
 		private bool sportSeats;
 
-		public PackageType(string name,float engineCapacity, int enginePower, string transmission, string fuelType, bool parkingSensors, bool sportSeats)
+		public Package(string name,float engineCapacity, int enginePower, string transmission, string fuelType, bool parkingSensors, bool sportSeats)
 		{
 			this.Name = name;
 			this.engineCapacity = engineCapacity;

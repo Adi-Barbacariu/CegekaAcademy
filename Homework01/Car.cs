@@ -5,9 +5,9 @@ namespace Homework01
 	public class Car
 	{
 		public string Model { get; private set; }
-		public PackageType PackageType { get; private set; }
+		public Package PackageType { get; private set; }
 
-		public Car(string model, PackageType packageType)
+		public Car(string model, Package packageType)
 		{
 			this.Model = model;
 			this.PackageType = packageType;
