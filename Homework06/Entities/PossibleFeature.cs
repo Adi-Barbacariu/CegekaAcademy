@@ -13,7 +13,7 @@ namespace Homework06.Entities
 			this.CarInventories = new HashSet<CarInventory>();
 		}
 
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 
 		public string Name { get; set; }
 

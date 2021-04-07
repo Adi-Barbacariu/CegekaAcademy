@@ -9,9 +9,13 @@ namespace Homework06
 	{
 		static void Main(string[] args)
 		{
-			var brandRepository = new EntityFrameworkRepository<Brand>();
+			// insert the connection strings
 
-			brandRepository.Insert( new Brand { Name = "Audi" } );
+			var brandEntityFrameworkRepository = new EntityFrameworkRepository<Brand>();
+
+			var brandMongoDBRepository = new MongoDBRepository<Brand>();
+
+			brandMongoDBRepository.Insert( new Brand { Name = "Audi" } );
 		}
 
 	}

@@ -10,7 +10,7 @@ namespace Homework06.Database
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"");
+			optionsBuilder.UseSqlServer(@"add the connection string here");
 		}
 
 		public DbSet<Brand> Brands { get; set; }

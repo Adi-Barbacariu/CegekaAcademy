@@ -13,7 +13,7 @@ namespace Homework06.Entities
 			this.CustomerPurchases = new HashSet<CustomerPurchase>();
 		}
 
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 
 		public Model Model { get; set; }
 

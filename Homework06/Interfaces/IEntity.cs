@@ -6,6 +6,6 @@ namespace Homework06.Interfaces
 {
 	public interface IEntity
 	{
-
+		public Guid Id { get; }
 	}
 }
