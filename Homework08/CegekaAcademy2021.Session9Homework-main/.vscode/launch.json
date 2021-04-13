@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+      "name": "Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}/src",
+      "userDataDir": "${workspaceRoot}/.vscode/chrome",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
+    },
+    {
+        "type": "node",
+        "name": "Jest current file",
+        "request": "launch",
+        "args": ["test", "--runInBand", "${fileBasenameNoExtension}"],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+        "protocol": "inspector"
+    }]
+  }
