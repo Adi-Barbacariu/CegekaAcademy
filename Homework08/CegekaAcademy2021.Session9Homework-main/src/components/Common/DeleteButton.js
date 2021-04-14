@@ -1,58 +1,51 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { Icon, Button, Confirm } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { deletePhoto } from "../../features/photosSlice.js";
+import { deleteAlbum } from "../../features/albumsSlice";
 
-class DeleteButton extends React.Component {
-  state = {
-    deleteConfirmOpen: false,
+function DeleteButton(props) {
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+
+  const { index, objectName, itemType } = props;
+  const dispatch = useDispatch();
+
+  const onDeleteItem = () => {
+    if (itemType == "photo") {
+      dispatch(deletePhoto(index));
+    }
+
+    if (itemType == "album") {
+      dispatch(deleteAlbum(index));
+    }
+
+    setDeleteConfirmOpen(false);
   };
 
-  handleDelete = () => {
-    this.setState({
-      deleteConfirmOpen: true,
-    });
+  const handleDelete = () => {
+    setDeleteConfirmOpen(true);
   };
 
-  onOkConfirm = () => {
-    this.props.deleteObject(this.props.index);
-    this.setState({
-      deleteConfirmOpen: false,
-    });
+  const onCancelConfirm = () => {
+    setDeleteConfirmOpen(false);
   };
 
-  onCancelConfirm = () => {
-    this.setState({
-      deleteConfirmOpen: false,
-    });
-  };
-
-  render() {
-    const { index, objectName } = this.props;
-    const { deleteConfirmOpen } = this.state;
-
-    return (
-      <Button basic color="red" onClick={() => this.handleDelete(index)}>
-        <Icon name="trash" />
-        Delete
-        {deleteConfirmOpen && (
-          <Confirm
-            open={deleteConfirmOpen}
-            content={`Are you sure you want to delete '${objectName}'?`}
-            cancelButton="No"
-            confirmButton="Yes, delete it!"
-            onCancel={() => this.onCancelConfirm()}
-            onConfirm={() => this.onOkConfirm()}
-          />
-        )}
-      </Button>
-    );
-  }
-
-  static propTypes = {
-    index: PropTypes.string.isRequired,
-    objectName: PropTypes.string.isRequired,
-    deleteObject: PropTypes.func.isRequired,
-  };
+  return (
+    <Button basic color="red" onClick={() => handleDelete(index)}>
+      <Icon name="trash" />
+      Delete
+      {deleteConfirmOpen && (
+        <Confirm
+          open={deleteConfirmOpen}
+          content={`Are you sure you want to delete '${objectName}'?`}
+          cancelButton="No"
+          confirmButton="Yes, delete it!"
+          onCancel={() => onCancelConfirm()}
+          onConfirm={onDeleteItem}
+        />
+      )}
+    </Button>
+  );
 }
 
 export default DeleteButton;

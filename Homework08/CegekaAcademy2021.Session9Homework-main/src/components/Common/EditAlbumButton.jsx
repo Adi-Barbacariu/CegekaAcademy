@@ -1,14 +1,9 @@
 import React from "react";
 import { Button, Header, Modal, Icon, Input } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { editAlbum } from "../../features/albumsSlice.js";
 
-function EditAlbumButton({
-  index,
-  name,
-  description,
-  tags,
-  photos,
-  editAlbum,
-}) {
+function EditAlbumButton({ index, name, description, tags, photos }) {
   const [open, setOpen] = React.useState(false);
   const [albumData, setAlbumData] = React.useState({
     name,
@@ -16,6 +11,13 @@ function EditAlbumButton({
     tags,
     photos,
   });
+
+  const dispatch = useDispatch();
+
+  const onEditAlbum = () => {
+    dispatch(editAlbum({ index, album: { ...albumData } }));
+    setOpen(false);
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -25,11 +27,6 @@ function EditAlbumButton({
 
   const handleCancel = (e) => {
     setAlbumData({ name, description });
-    setOpen(false);
-  };
-
-  const handleEdit = (e) => {
-    editAlbum(index, { ...albumData });
     setOpen(false);
   };
 
@@ -70,7 +67,7 @@ function EditAlbumButton({
               content="Done"
               labelPosition="right"
               icon="checkmark"
-              onClick={handleEdit}
+              onClick={onEditAlbum}
               positive
             />
           </Modal.Actions>

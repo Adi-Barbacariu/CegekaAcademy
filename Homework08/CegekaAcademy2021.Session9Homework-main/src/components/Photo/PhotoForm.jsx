@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { Header, Button, Modal, Input } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { addPhoto } from "../../features/photosSlice.js";
 
-function PhotoForm({ open, handleOpen, setOpen, createItem }) {
+function PhotoForm({ open, handleOpen, setOpen }) {
   const [itemData, setItemData] = useState({});
+
+  const dispatch = useDispatch();
+
+  const onSaveAddPhoto = () => {
+    dispatch(addPhoto(itemData));
+    handleClose();
+  };
 
   const handleClose = () => {
     setItemData({});
@@ -12,11 +21,6 @@ function PhotoForm({ open, handleOpen, setOpen, createItem }) {
   const handleChange = (e) => {
     const value = e.target.value;
     setItemData({ ...itemData, [e.target.name]: value });
-  };
-
-  const handleAdd = () => {
-    createItem(itemData);
-    handleClose();
   };
 
   return (
@@ -55,7 +59,7 @@ function PhotoForm({ open, handleOpen, setOpen, createItem }) {
           content="Add"
           labelPosition="right"
           icon="checkmark"
-          onClick={handleAdd}
+          onClick={onSaveAddPhoto}
           positive
         />
       </Modal.Actions>

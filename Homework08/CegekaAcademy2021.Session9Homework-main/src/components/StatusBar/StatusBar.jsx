@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Icon, Menu, Button, Label, Dropdown } from "semantic-ui-react";
+import { Icon, Menu, Button, Label } from "semantic-ui-react";
 import PhotoForm from "../Photo/PhotoForm";
 import AlbumForm from "../Album/AlbumForm";
 
@@ -16,7 +16,7 @@ const ItemNumberLabel = ({ itemType, itemCount }) => (
   </Label>
 );
 
-function StatusBar({ itemType, itemCount, createItem, photos }) {
+function StatusBar({ itemType, itemCount, photos }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -34,18 +34,12 @@ function StatusBar({ itemType, itemCount, createItem, photos }) {
         </Menu.Item>
       </Menu.Menu>
       {itemType == "photo" && (
-        <PhotoForm
-          open={open}
-          handleOpen={handleOpen}
-          createItem={createItem}
-          setOpen={setOpen}
-        />
+        <PhotoForm open={open} handleOpen={handleOpen} setOpen={setOpen} />
       )}
       {itemType == "album" && (
         <AlbumForm
           open={open}
-          handleOpe={handleOpen}
-          createItem={createItem}
+          handleOpen={handleOpen}
           photos={photos}
           setOpen={setOpen}
         />

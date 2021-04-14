@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Header, Button, Modal, Input, Dropdown } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { addAlbum } from "../../features/albumsSlice.js";
 
 const InputSelectPhotos = ({ photos, handleChange }) => {
   const options = [];
@@ -27,8 +29,15 @@ const InputSelectPhotos = ({ photos, handleChange }) => {
   );
 };
 
-function AlbumForm({ open, handleOpen, photos, setOpen, createItem }) {
+function AlbumForm({ open, handleOpen, photos, setOpen }) {
   const [itemData, setItemData] = useState({});
+
+  const dispatch = useDispatch();
+
+  const onSaveAddAlbum = () => {
+    dispatch(addAlbum(itemData));
+    handleClose();
+  };
 
   const handleClose = () => {
     setItemData({});
@@ -42,11 +51,6 @@ function AlbumForm({ open, handleOpen, photos, setOpen, createItem }) {
 
   const handleDropdownChange = (e, data) => {
     setItemData({ ...itemData, photosIds: data.value });
-  };
-
-  const handleAdd = () => {
-    createItem(itemData);
-    handleClose();
   };
 
   return (
@@ -90,7 +94,7 @@ function AlbumForm({ open, handleOpen, photos, setOpen, createItem }) {
           content="Add"
           labelPosition="right"
           icon="checkmark"
-          onClick={handleAdd}
+          onClick={onSaveAddAlbum}
           positive
         />
       </Modal.Actions>

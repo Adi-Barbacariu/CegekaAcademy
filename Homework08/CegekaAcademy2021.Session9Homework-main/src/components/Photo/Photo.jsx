@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 import { DeleteButton, EditPhotoButton } from "../Common";
 
-function Photo({ index, title, description, url, deletePhoto, editPhoto }) {
+function Photo({ index, title, description, url }) {
   return (
     <Card>
       <Image src={url} wrapped ui={false} />
@@ -18,15 +18,8 @@ function Photo({ index, title, description, url, deletePhoto, editPhoto }) {
             title={title}
             description={description}
             url={url}
-            editPhoto={editPhoto}
           />
-          <DeleteButton
-            objectName={title}
-            index={index}
-            deleteObject={(e) => {
-              deletePhoto(e, index);
-            }}
-          />
+          <DeleteButton itemType="photo" objectName={title} index={index} />
         </div>
       </Card.Content>
     </Card>

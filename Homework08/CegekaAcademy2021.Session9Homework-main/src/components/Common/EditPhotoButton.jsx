@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Header, Modal, Icon, Input } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { editPhoto } from "../../features/photosSlice.js";
 
-function EditPhotoButton({ index, title, description, url, editPhoto }) {
+function EditPhotoButton({ index, title, description, url }) {
   const [open, setOpen] = React.useState(false);
   const [photoData, setPhotoData] = React.useState({ title, description, url });
 
@@ -16,8 +18,10 @@ function EditPhotoButton({ index, title, description, url, editPhoto }) {
     setOpen(false);
   };
 
-  const handleEdit = (e) => {
-    editPhoto(index, { ...photoData });
+  const dispatch = useDispatch();
+
+  const onEditPhoto = () => {
+    dispatch(editPhoto({ index, photo: { ...photoData } }));
     setOpen(false);
   };
 
@@ -65,7 +69,7 @@ function EditPhotoButton({ index, title, description, url, editPhoto }) {
               content="Done"
               labelPosition="right"
               icon="checkmark"
-              onClick={handleEdit}
+              onClick={onEditPhoto}
               positive
             />
           </Modal.Actions>

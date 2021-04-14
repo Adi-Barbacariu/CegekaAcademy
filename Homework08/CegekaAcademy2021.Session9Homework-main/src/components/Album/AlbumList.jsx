@@ -15,17 +15,12 @@ const getAlbumPhotos = (photos, photosIds) => {
   return albumPhotos;
 };
 
-function AlbumList({ albums, photos, deleteAlbum, editAlbum, createAlbum }) {
+function AlbumList({ albums, photos }) {
   const albumCount = Object.keys(albums).length;
 
   return (
     <React.Fragment>
-      <StatusBar
-        itemType="album"
-        itemCount={albumCount}
-        createItem={createAlbum}
-        photos={photos}
-      />
+      <StatusBar itemType="album" itemCount={albumCount} photos={photos} />
       <Card.Group>
         {Object.keys(albums).map((key) => {
           const currentAlbum = albums[key];
@@ -38,8 +33,6 @@ function AlbumList({ albums, photos, deleteAlbum, editAlbum, createAlbum }) {
               {...currentAlbum}
               photos={albumPhotos}
               key={key}
-              deleteAlbum={deleteAlbum}
-              editAlbum={editAlbum}
             />
           );
         })}

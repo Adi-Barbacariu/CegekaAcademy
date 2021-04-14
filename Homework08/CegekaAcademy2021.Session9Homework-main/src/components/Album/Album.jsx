@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, Icon, Label, Divider } from "semantic-ui-react";
+import { Card, Button, Label, Divider } from "semantic-ui-react";
 import "./Album.css";
 import WithLightbox from "../Common/WithLightbox.js";
 import { DeleteButton, EditAlbumButton } from "../../components/Common";
@@ -42,10 +42,6 @@ function Album({
       <Card.Content extra>
         <SlideshowButton photos={photos} />
         <div className="ui two buttons">
-          {/* <Button basic color="green">
-            <Icon name="edit" />
-            Edit
-          </Button> */}
           <EditAlbumButton
             index={index}
             name={name}
@@ -55,6 +51,7 @@ function Album({
             editAlbum={editAlbum}
           />
           <DeleteButton
+            itemType="album"
             objectName={name}
             index={index}
             deleteObject={(e) => {
