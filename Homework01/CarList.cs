@@ -26,7 +26,7 @@ namespace Homework01
 		}
 
 		// print car's details for all cars in the list
-		public void PrettyPrintCars()
+		public void PrintCarsDetails()
 		{
 			if (Cars.Count == 0)
 			{
@@ -41,7 +41,7 @@ namespace Homework01
 			Console.WriteLine("Cars that have been manufactured:");
 			foreach (var car in Cars)
 			{
-				car.PrettyPrint();
+				car.PrintDetails();
 			}
 			Console.ForegroundColor = ConsoleColor.White;
 		}

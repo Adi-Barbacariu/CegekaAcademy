@@ -14,7 +14,7 @@ namespace Homework01
 		}
 
 		// print the car's details 
-		public void PrettyPrint()
+		public void PrintDetails()
 		{
 			var detailsStr = this.PackageType.GetDetailsString(); 
 

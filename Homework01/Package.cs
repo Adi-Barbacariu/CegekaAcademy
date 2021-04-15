@@ -21,11 +21,15 @@
 			this.sportSeats = sportSeats;
 		}
 
-		// returns a string with details of the package
 		public string GetDetailsString()
 		{
 			var str = $"{this.engineCapacity}D {this.enginePower}HP {this.fuelType} {this.transmission} ({this.Name} Edition)";
 			return str;
+		}
+
+		public override string ToString()
+		{
+			return this.Name;
 		}
 	}
 }

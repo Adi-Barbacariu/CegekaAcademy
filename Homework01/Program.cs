@@ -19,47 +19,35 @@ namespace Homework01
 
 			var Cars = new CarList();	 
 			var Menu = new Menu();
-
-			// menu
-			int userInput;
+			
+			int userChoice;
+			
 			do
 			{
-				userInput = Menu.DisplayMenu();
+				userChoice = Menu.GetUserChoiceOnMainMenu();
 
-				switch (userInput)
+				switch (userChoice)
 				{
-					case 1:
+					case 0:
 						Cars.PrintAmountOfCars();
 						break;
-					case 2:
-						Cars.PrettyPrintCars();
+					case 1:
+						Cars.PrintCarsDetails();
 						break;
-					case 3:
-						// get the model index
-						int modelIndex = Menu.DisplayCarModelMenu(models);
-						if (modelIndex == -1) break;
+					case 2:
+						var car = Menu.CreateNewCar(models, packages);
+						
+						if (car == null) break; 
 
-						// get the package index
-						int packageIndex = Menu.DisplayCarPackageMenu(packages);
-						if (packageIndex == -1) break;
-
-						// create new car
-						var car = new Car(models[modelIndex], packages[packageIndex]);
-
-						// add the new car to the list
 						Cars.AddCarToList(car);
 
-						// print success message on console
-						Console.ForegroundColor = ConsoleColor.Green;
-						Console.WriteLine("Successfully added new car");
-						Console.ForegroundColor = ConsoleColor.White;
-
+						Menu.ConsoleWriteLineWithGreenColor("Successfully added new car");
 						break;
 					default:
 						break;
 				}
 
-			} while (userInput != 4);
+			} while (userChoice != 3);
 		}
 
 	}

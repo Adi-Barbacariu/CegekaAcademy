@@ -1,98 +1,118 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Homework01
 {
 	public class Menu
 	{
-		public int DisplayMenu()
+		private string[] mainMenuOptions = new string[]
 		{
-			Console.WriteLine("----------------------------");
-			Console.WriteLine("Please choose an option:");
-			Console.WriteLine();
-			Console.WriteLine("1. Display total number of manufactured cars");
-			Console.WriteLine("2. Display cars details");
-			Console.WriteLine("3. Create a new car");
-			Console.WriteLine("4. Exit");
-			Console.WriteLine("----------------------------");
+			"Display total number of manufactured cars",
+			"Display cars' details",
+			"Create a new car",
+			"Exit"
+		};
+
+		public Car CreateNewCar(string[] models,Package[] packages)
+		{
+			int modelIndex = GetUserChoiceCarModelMenu(models);
+			if (modelIndex == -1) return null;
+
+			int packageIndex = GetUserChoiceOnCarPackageMenu(packages);
+			if (packageIndex == -1) return null;
+
+			var car = new Car(models[modelIndex], packages[packageIndex]);
+
+			return car;
+		}
+
+		public int GetUserChoiceOnMainMenu()
+		{
+			var message = "Please choose an option:";
+
+			PrintMenuOptions(message, mainMenuOptions);
+
 			var result = Console.ReadLine();
 
-			// check if user made a valid choice
-			if (result == "1" || result == "2" || result == "3" || result == "4")
+			if (IsValidChoice(result, mainMenuOptions.Length))
 			{
 				return Convert.ToInt32(result);
-			} else
-			{
-				return 0;
 			}
+
+			return 0;
 		}
 
-		public int DisplayCarModelMenu(string[] carModels)
+		public void ConsoleWriteLineWithGreenColor(string message)
 		{
-			Console.WriteLine("----------------------------");
-			Console.WriteLine("Choose the car's model:");
-			Console.WriteLine();
-			for (int i = 0; i < carModels.Length; i++)
-			{
-				Console.WriteLine($"{i}. {carModels[i]}");
-			}
-			Console.WriteLine("----------------------------");
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine($"{message}");
+			Console.ForegroundColor = ConsoleColor.White;
+		}
+
+		private int GetUserChoiceCarModelMenu(string[] carModels)
+		{
+			var message = "Choose the car's model:";
+
+			PrintMenuOptions(message, carModels);
+
 			var result = Console.ReadLine();
 
-			// check if user made a valid choice
-			int parsedResult;
-			if (int.TryParse(result, out parsedResult))
+			if (IsValidChoice(result, carModels.Length))
 			{
-				// value is held in parsedResult
-				if (parsedResult >= 0 && parsedResult < carModels.Length)
-				{
-					return parsedResult;
-				}
-
-				Console.ForegroundColor = ConsoleColor.Green;
-				Console.WriteLine("Invalid choice");
-				Console.ForegroundColor = ConsoleColor.White;
-
-				return -1;
-			} else
-			{
-				// result was not a number
-				return -1;
+				return Convert.ToInt32(result);
 			}
 
+			return -1;
 		}
 
-		public int DisplayCarPackageMenu(Package[] carPackages)
+		private int GetUserChoiceOnCarPackageMenu(Package[] carPackages)
+		{
+			var message = "Choose the car's package:";
+
+			PrintMenuOptions<Package>(message, carPackages);
+
+			var result = Console.ReadLine();
+
+			if (IsValidChoice(result, carPackages.Length))
+			{
+				return Convert.ToInt32(result);
+			}
+
+			return -1;
+		}
+
+		private void PrintMenuOptions<T>(string message, T[] items)
 		{
 			Console.WriteLine("---------------------------");
-			Console.WriteLine("Choose the car's package:");
+			Console.WriteLine($"{message}");
 			Console.WriteLine();
-			for (int i = 0; i < carPackages.Length; i++)
+			for (int i = 0; i < items.Length; i++)
 			{
-				Console.WriteLine($"{i}. {carPackages[i].Name}");
+				Console.WriteLine($"{i}. {items[i].ToString()}");
 			}
 			Console.WriteLine("----------------------------");
-			var result = Console.ReadLine();
-
-			// check if user made a valid choice
-			int parsedResult;
-			if (int.TryParse(result, out parsedResult))
-			{
-				// value is held in parsedResult
-				if (parsedResult >= 0 && parsedResult < carPackages.Length)
-				{
-					return parsedResult;
-				}
-
-				Console.ForegroundColor = ConsoleColor.Green;
-				Console.WriteLine("Invalid choice");
-				Console.ForegroundColor = ConsoleColor.White;
-
-				return -1;
-			} else
-			{
-				// result was not a number
-				return -1;
-			}
 		}
+
+		private bool IsValidChoice(string choice,int maxChoiceValue)
+		{
+			if (!Regex.IsMatch(choice, @"^\d+$"))
+			{
+				ConsoleWriteLineWithGreenColor($"You must enter a number from 0 to {maxChoiceValue - 1}");
+
+				return false;
+			}
+
+			int parsedChoice = Convert.ToInt32(choice);
+
+			if (parsedChoice >= 0 && parsedChoice < maxChoiceValue)
+			{
+				return true;
+			}
+
+			ConsoleWriteLineWithGreenColor("Invalid choice");
+
+			return false;
+		}
+		
 	}
 }
