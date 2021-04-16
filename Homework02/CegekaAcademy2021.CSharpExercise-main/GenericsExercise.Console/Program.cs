@@ -7,79 +7,81 @@ namespace GenericsExercise.Console
     {
         static void Main(string[] args)
         {
-            var db = new DB();
+            var databaseMock = new DatabaseMock();
             
             string userInput;
 
-            do // while the user doesn't type '5'
+            do 
             {
-                userInput = UI.DisplayMenu(); // get the user's input 
+                userInput = UI.GetUserInputOnMainMenu();  
                 
                 try
                 {
                     
                     switch (userInput)
                     {
-                        case "1": // Print all students 
+                        case "1": 
                             System.Console.WriteLine("Students:");
                         
-                            var students = db.ReadItems<Student>();
+                            var students = databaseMock.GetItems<Student>();
                         
-                            UI.DisplayItems(students);
+                            UI.PrintItemsOnConsole(students);
                         
                             break;
                     
-                        case "2": // Print all universities
+                        case "2": 
                             System.Console.WriteLine("Universities:");
                         
-                            var universities = db.ReadItems<University>();
+                            var universities = databaseMock.GetItems<University>();
                         
-                            UI.DisplayItems(universities);
-                        
-                            break;
-                    
-                        case "3": // add a new student
-                            var createdStudent = new Student();
-
-                            // get the user's data from user
-                            List<string> studentData = UI.AddNewItemMenu(createdStudent);
-
-                            createdStudent.Id = studentData[0];
-                            createdStudent.FisrtName = studentData[1];
-                            createdStudent.LastName = studentData[2];
-
-                            // add the user to db
-                            db.AddItem(createdStudent);
+                            UI.PrintItemsOnConsole(universities);
                         
                             break;
                     
-                        case "4": // add a new uni
-                            var createdUni = new University();
+                        case "3": 
+                            var student = new Student();
 
-                            // get the uni's data from user
-                            List<string> uniData = UI.AddNewItemMenu(createdUni);
+                            Dictionary<string, string> studentData = UI.GetUserInputOnNewItemMenu(student);
 
-                            createdUni.Id = uniData[0];
-                            createdUni.Name = uniData[1];
-                            createdUni.Address = uniData[2];
+                            student.Id = studentData["Id"];
+                            student.FisrtName = studentData["FisrtName"];
+                            student.LastName = studentData["LastName"];
 
-                            // add the uni to db
-                            db.AddItem(createdUni);
+                            databaseMock.AddItem(student);
                         
+                            UI.ConsoleWritelineGreen("Item successfully created.");
+
+                            break;
+
+                        case "4": 
+                            var university = new University();
+
+                            Dictionary<string, string> universityData = UI.GetUserInputOnNewItemMenu(university);
+
+                            university.Id = universityData["Id"];
+                            university.Name = universityData["Name"];
+                            university.Address = universityData["Address"];
+
+                            databaseMock.AddItem(university);
+
+                            UI.ConsoleWritelineGreen("Item successfully created.");
+
                             break;
                     
-                        default: // do nothing on other inputs
+                        default: 
                             break;
                     }
 
                 }
-                catch (ArgumentException ex) // id is invalid
+                catch (ArgumentException ex) 
 				{
-                    System.Console.WriteLine($"{ex.Message}. Id should be non-null, max 10 characters, and should not contain the character '%'");
+                    var message = $"{ex.Message}. Id should be non-null, max 10 characters, and should not contain the character '%'";
+
+                    UI.ConsoleWritelineRed(message);
 				}
-                catch (Exception ex) // other exceptions
+                catch (Exception ex) 
                 {
-                    System.Console.WriteLine(ex.Message);
+                    UI.ConsoleWritelineRed(ex.Message);
                 }
 
             } while (userInput != "5");

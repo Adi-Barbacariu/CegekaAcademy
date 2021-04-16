@@ -4,8 +4,9 @@ namespace GenericsExercise.Console
 {
 	public class UI
 	{
-        // main menu
-        public static string DisplayMenu()
+        // todo: make a dictionary with main menu options and use it here and in switch in program.cs
+
+        public static string GetUserInputOnMainMenu()
 		{
             System.Console.WriteLine("------------------------");
             System.Console.WriteLine("Choose an option:");
@@ -21,45 +22,43 @@ namespace GenericsExercise.Console
             return input;
         }
 
-        // gets new item's data
-        public static List<string> AddNewItemMenu<T>(T item) where T : IEntity 
+        public static Dictionary<string, string> GetUserInputOnNewItemMenu<T>(T item) where T : IEntity 
         {
-            // get all props of an object passed as arg 
             var props = item.GetType().GetProperties();
 
-            List<string> values = new List<string>();
+            var itemData = new Dictionary<string, string>();
 
-            // iterate props and add user's input to list
 			foreach (var prop in props)
 			{
                     System.Console.WriteLine($"Enter {prop.Name}:");
-                    var value = System.Console.ReadLine();
-                    values.Add(value);
+                    var propValue = System.Console.ReadLine();
+                    itemData.Add(prop.Name, propValue);
             }
 
-            return values;
+            return itemData;
         }
 
-        // print items of the same type
-        public static void DisplayItems<T>(IEnumerable<T> items) where T : IEntity
+        public static void PrintItemsOnConsole<T>(IEnumerable<T> items) where T : IEntity
 		{
 			foreach (var item in items)
 			{
-                string output = "";
-
-                // get all props of the object
-                var props = item.GetType().GetProperties();
-
-                // iterate props and add to string name and value of each prop
-                foreach (var prop in props)
-				{
-                    output += $"{prop.Name}: {prop.GetValue(item)}, ";
-                }
-                
-                // print names and values of props
-                System.Console.WriteLine(output);
+                ConsoleWritelineGreen(item.ToString());
 			}
 		}
 
-	}
+        public static void ConsoleWritelineGreen(string message)
+		{
+            System.Console.ForegroundColor = System.ConsoleColor.Green;
+            System.Console.WriteLine($"{message}");
+            System.Console.ForegroundColor = System.ConsoleColor.White;
+        }
+
+        public static void ConsoleWritelineRed(string message)
+        {
+            System.Console.ForegroundColor = System.ConsoleColor.Red;
+            System.Console.WriteLine($"{message}");
+            System.Console.ForegroundColor = System.ConsoleColor.White;
+        }
+
+    }
 }
