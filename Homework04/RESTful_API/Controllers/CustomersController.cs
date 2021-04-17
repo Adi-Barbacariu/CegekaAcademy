@@ -11,21 +11,21 @@ namespace RESTful_API.Controllers
 	[ApiController]
 	public class CustomersController : Controller
 	{
-		List<Customer> customers = Database.customers;
-		List<Car> cars = Database.cars;
+		List<Customer> customers = DatabaseMock.customers;
+	    List<Car> cars = DatabaseMock.cars;
 
 		[HttpGet("params")] //  /api/customers/params?page={page}&&car_brand={car_brand}
 		public ActionResult ReadCustomers(int page, string car_brand)
 		{
 			var pageSize = 3;
 
-			var formatString = car_brand.First().ToString().ToUpper() + car_brand.Substring(1).ToLower();
+			var formatStringCarBrand = car_brand.First().ToString().ToUpper() + car_brand.Substring(1).ToLower();
 			
 			var results = new List<Customer>();
 
 			foreach (var customer in customers)
 			{
-				if (customer.OwnedCars.Any(car => car.Brand == formatString))
+				if (customer.OwnedCars.Any(car => car.Brand == formatStringCarBrand))
 					results.Add(customer);
 			}
 

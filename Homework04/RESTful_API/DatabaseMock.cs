@@ -7,7 +7,7 @@ using RESTful_API.Models;
 
 namespace RESTful_API
 {
-	public class Database
+	public class DatabaseMock
 	{
 
 		public static List<Car> cars = new List<Car>()
