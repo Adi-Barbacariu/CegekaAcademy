@@ -25,20 +25,16 @@ namespace csharp.Models
 			return this.item.Quality;
 		}
 		
-		// default behavior of an item
 		public virtual void UpdateItem()
 		{
-			//At the end of each day our system lowers both values for every item
 			item.SellIn--;
 			item.Quality--;
 
-			// if the sell by date has passed, Quality degrades twice as fast
 			if (item.SellIn <= 0)
 			{
 				item.Quality--;
 			}
 
-			// The Quality of an item is never negative
 			if (item.Quality < 0)
 			{
 				item.Quality = 0;

@@ -5,7 +5,7 @@ namespace GenericsExercise.Console
 	public class UI
 	{
         // todo: make a dictionary with main menu options and use it here and in switch in program.cs
-
+        
         public static string GetUserInputOnMainMenu()
 		{
             System.Console.WriteLine("------------------------");

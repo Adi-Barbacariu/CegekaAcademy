@@ -13,7 +13,6 @@ namespace csharp.Models
 		{
 		}
 
-		//degrades in Quality twice as fast as normal items
 		public override void UpdateItem()
 		{
 			

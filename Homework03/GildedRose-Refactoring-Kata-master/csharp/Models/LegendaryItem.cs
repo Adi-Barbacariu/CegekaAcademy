@@ -11,10 +11,9 @@ namespace csharp.Models
 		public LegendaryItem(Item item)
 			:base(item)
 		{
-			item.Quality = 80; //its Quality is 80 and it never alters.
+			item.Quality = 80; 
 		}
 
-		// legendary item, never has to be sold or decreases in Quality
 		public override void UpdateItem()
 		{
 		}
