@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Album Album snapshot test 1`] = `
+<div
+  className="ui card"
+  href={undefined}
+  onClick={[Function]}
+>
+  <div
+    className="content"
+  >
+    <div
+      className="header header"
+    >
+      album name
+    </div>
+    <div
+      className="ui divider"
+    />
+    <div
+      className="ui label"
+      onClick={[Function]}
+    >
+      tag1
+    </div>
+    <div
+      className="ui label"
+      onClick={[Function]}
+    >
+      tag2
+    </div>
+    <div
+      className="description album-desc"
+    >
+      album description
+    </div>
+  </div>
+  <div
+    className="extra content"
+  >
+    <div
+      className="ui blue basic fluid bottom attached button"
+      disabled={undefined}
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "margin": "5px 0",
+        }
+      }
+      tabIndex={0}
+    >
+      <div
+        onClick={[Function]}
+      >
+        <div>
+          Slideshow
+        </div>
+      </div>
+    </div>
+    <div
+      className="ui two buttons"
+    >
+      <button
+        className="ui green basic button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="edit icon"
+        />
+        Edit
+      </button>
+      <button
+        className="ui red basic button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="trash icon"
+        />
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+`;

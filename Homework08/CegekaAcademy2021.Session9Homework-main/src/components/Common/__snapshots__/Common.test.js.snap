@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Common Delete button snapshot test 1`] = `
+<button
+  className="ui red basic button"
+  disabled={undefined}
+  onClick={[Function]}
+  role="button"
+  tabIndex={undefined}
+>
+  <i
+    aria-hidden="true"
+    className="trash icon"
+  />
+  Delete
+</button>
+`;
