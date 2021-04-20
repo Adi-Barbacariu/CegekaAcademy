@@ -81,8 +81,8 @@ As an user, I want to be able to make CRUD operations(create, read, update, dele
 Enable user to get informed about the documents which need to be renewed(like ITP, RCA or Vignette) before the the expiry date is passed.
    
 **Goals**: 
-- An user is able to add informations about different car documents: type of the document, expiry date
-- An user gets reminders based on the provided informations. page.
+- An user is able to add informations about different car documents: type of the document, expiry date.
+- An user gets reminders based on the provided informations.
    
 **Stories**:
    
