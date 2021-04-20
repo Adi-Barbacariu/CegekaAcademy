@@ -14,7 +14,7 @@ prioritize them. Justify your decisions.
 
 3. **Productivity Time App**: an application that can restrict an user from using social media excessively and can help him to focus more on his work.    
 
-## Choosen idea: 1) Vehicle Manager
+## Vehicle Manager
 
 **Functionalities:**
 
