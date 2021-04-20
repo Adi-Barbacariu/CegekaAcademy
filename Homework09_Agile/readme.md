@@ -8,7 +8,7 @@ prioritize them. Justify your decisions.
 
 ## Project Ideas: 
 
-1. **Vehicle Manager**: an application which can manage your cars informations and can alert you before a document of the car expires. Also, you can see the car services around your location and use different services in case of having a problem with your car.
+✔️1. **Vehicle Manager**: an application which can manage your cars informations and can alert you before a document of the car expires. Also, you can see the car services around your location and use different services in case of having a problem with your car.
 
 2. **B2B Online Marketplace**: an application for wholesalers who want to sell their products and entrepreneurs who want to buy them for their businesses.
 
